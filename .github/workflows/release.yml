@@ -8,6 +8,8 @@ on:
 jobs:
   check-release:
     runs-on: ubuntu-20.04
+    outputs:
+      artifact_name: ${{ steps.create_artifact.outputs.artifact_name }}
 
     steps:
       - name: Check out code
@@ -34,6 +36,10 @@ jobs:
 
       - name: Check artifact
         run: ls -lha /home/runner/work/release
+        shell: bash
+
+      - name: Check name
+        run: echo ${{ steps.create_artifact.outputs.artifact_name }}
         shell: bash
 
       - name: Upload Release Artifact
