@@ -23,12 +23,13 @@ jobs:
         run: chmod 755 .github/workflows/release.sh
 
       - name: Create Release Artifact
+        id: create_artifact
         run: |
           VERSION=${{ github.ref }}
           VERSION=${VERSION#refs/tags/}
           mkdir /home/runner/work/release
           zip -r /home/runner/work/release/${VERSION}.zip $GITHUB_WORKSPACE
-          echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT
+          echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT > /dev/null
           echo "wersja"
           echo $VERSION
 
