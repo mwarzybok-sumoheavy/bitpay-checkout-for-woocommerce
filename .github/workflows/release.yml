@@ -24,7 +24,7 @@ jobs:
       - name: Change permissions for release.sh
         run: chmod 755 .github/workflows/release.sh
 
-      - name: Create Release Artifact
+      - name: Create Release Assets
         id: create_artifact
         run: |
           VERSION=${{ github.ref }}
@@ -34,20 +34,10 @@ jobs:
           echo "{artifact_name}=${VERSION}.zip" >> "$GITHUB_ENV"
         shell: bash
 
-      - name: Check artifact
-        run: ls -lha /home/runner/work/release
-        shell: bash
-
-      - name: Check name
-        run: echo $artifact_name
-        shell: bash
-
-      - name: Upload Release Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: $artifact_name
-          path: /home/runner/work/release/test.zip
-          if-no-files-found: error
+      - name: Upload Release Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.event.release.tag_name }} /home/runner/work/release/
 
       - name: Copy the files directory with the Git repository to a new subversion tag
         env:
