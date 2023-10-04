@@ -29,6 +29,9 @@ jobs:
           mkdir /home/runner/work/release
           zip -r /home/runner/work/release/${VERSION}.zip $GITHUB_WORKSPACE
           echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT
+          echo "wersja"
+          echo $VERSION
+
         shell: bash
 
       - name: Upload Release Artifact
