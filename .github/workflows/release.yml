@@ -9,8 +9,6 @@ jobs:
   check-release:
     runs-on: ubuntu-20.04
     permissions: write-all
-    outputs:
-      artifact_name: ${{ steps.create_artifact.outputs.artifact_name }}
 
     steps:
       - name: Check out code
@@ -27,12 +25,11 @@ jobs:
       - name: Create Release Assets
         id: create_artifact
         run: |
-          VERSION=${{ github.ref }}
-          VERSION=${VERSION#refs/tags/}
+          FILE_NAME=bitpay-checkout-for-woocommerce
           mkdir /home/runner/work/release
-          zip -r /home/runner/work/release/${VERSION}.zip $GITHUB_WORKSPACE > /dev/null
-          tar -czvf /home/runner/work/release/${VERSION}.tar.gz $GITHUB_WORKSPACE > /dev/null
-          echo "artifact_name=${VERSION}.zip" >> "$GITHUB_ENV"
+          cd /home/runner/work/release
+          zip -r /home/runner/work/release/${FILE_NAME}.zip $GITHUB_WORKSPACE > /dev/null
+          tar -czvf /home/runner/work/release/${FILE_NAME}.tar.gz $GITHUB_WORKSPACE > /dev/null
         shell: bash
 
       - name: Upload Release Asset
