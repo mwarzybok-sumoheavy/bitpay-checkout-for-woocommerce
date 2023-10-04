@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.create_artifact.outputs.artifact_name }}
-          path: /home/runner/work/release/${{ steps.create_artifact.outputs.artifact_name }}
+          path: /home/runner/work/release/${{ steps.create_artifact.outputs.artifact_name }}.zip
 
       - name: Copy the files directory with the Git repository to a new subversion tag
         env:
