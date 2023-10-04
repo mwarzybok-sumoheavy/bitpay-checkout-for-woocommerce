@@ -33,6 +33,9 @@ jobs:
           echo "{artifact_name}=${VERSION}.zip" >> "$GITHUB_ENV"
         shell: bash
 
+      - name: check github token
+        run: echo ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload Release Asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
