@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.create_artifact.outputs.artifact_name }}
-          path: /home/runner/work/release/
+          path: /home/runner/work/release/test.zip
           if-no-files-found: error
 
       - name: Copy the files directory with the Git repository to a new subversion tag
