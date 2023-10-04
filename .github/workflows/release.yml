@@ -28,18 +28,15 @@ jobs:
           VERSION=${{ github.ref }}
           VERSION=${VERSION#refs/tags/}
           mkdir /home/runner/work/release
-          zip -r /home/runner/work/release/${VERSION}.zip $GITHUB_WORKSPACE
-          echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT > /dev/null
-          echo "wersja"
-          echo $VERSION
-
+          zip -r /home/runner/work/release/${VERSION}.zip $GITHUB_WORKSPACE > /dev/null
+          echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Upload Release Artifact
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.create_artifact.outputs.artifact_name }}
-          path: /home/runner/work/release/${{ steps.create_artifact.outputs.artifact_name }}.zip
+          path: /home/runner/work/release/
 
       - name: Copy the files directory with the Git repository to a new subversion tag
         env:
