@@ -25,6 +25,9 @@ fi
 
 mkdir $SVN_DIR/tags/$VERSION -p
 
+echo "Remove .git"
+rm -rf $GITHUB_WORKSPACE/.git
+
 echo "Copy project to SVN"
 cp -R $GITHUB_WORKSPACE/* $SVN_DIR/tags/$VERSION
 
