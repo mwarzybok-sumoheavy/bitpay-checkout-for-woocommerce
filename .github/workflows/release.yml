@@ -8,6 +8,7 @@ on:
 jobs:
   check-release:
     runs-on: ubuntu-20.04
+    permissions: write-all
     outputs:
       artifact_name: ${{ steps.create_artifact.outputs.artifact_name }}
 
@@ -30,11 +31,8 @@ jobs:
           VERSION=${VERSION#refs/tags/}
           mkdir /home/runner/work/release
           zip -r /home/runner/work/release/test.zip $GITHUB_WORKSPACE > /dev/null
-          echo "{artifact_name}=${VERSION}.zip" >> "$GITHUB_ENV"
+          echo "artifact_name=${VERSION}.zip" >> "$GITHUB_ENV"
         shell: bash
-
-      - name: check github token
-        run: echo ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Asset
         env:
