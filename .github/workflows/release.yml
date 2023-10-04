@@ -31,7 +31,7 @@ jobs:
           VERSION=${VERSION#refs/tags/}
           mkdir /home/runner/work/release
           zip -r /home/runner/work/release/test.zip $GITHUB_WORKSPACE > /dev/null
-          echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT
+          echo "{artifact_name}=${VERSION}.zip" >> "$GITHUB_ENV"
         shell: bash
 
       - name: Check artifact
@@ -39,13 +39,13 @@ jobs:
         shell: bash
 
       - name: Check name
-        run: echo ${{ steps.create_artifact.outputs.artifact_name }}
+        run: echo $artifact_name
         shell: bash
 
       - name: Upload Release Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.create_artifact.outputs.artifact_name }}
+          name: $artifact_name
           path: /home/runner/work/release/test.zip
           if-no-files-found: error
 
