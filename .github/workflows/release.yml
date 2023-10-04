@@ -32,11 +32,16 @@ jobs:
           echo "{artifact_name}=${VERSION}.zip" >> $GITHUB_OUTPUT
         shell: bash
 
+      - name: Check artifact
+        run: ls -lha /home/runner/work/release
+        shell: bash
+
       - name: Upload Release Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.create_artifact.outputs.artifact_name }}
           path: /home/runner/work/release/
+          if-no-files-found: error
 
       - name: Copy the files directory with the Git repository to a new subversion tag
         env:
