@@ -47,10 +47,6 @@ jobs:
           ./.github/workflows/acceptance/acceptance-tests.sh
         shell: bash
 
-#      - name: Install Composer dependencies
-#        run: |
-#          composer install --dev --no-progress --prefer-dist --optimize-autoloader
-
       - name: Install WordPress with WooCommerce
         run: |
           cd ..
