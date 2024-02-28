@@ -2,7 +2,7 @@
 
 ls -lha
 
-mysql -h127.0.0.1 -uroot -proot bitpay-wordpress-test <./.github/workflows/acceptance/dump.sql && echo "Restored Database"
+mysql -hapache2 -uroot -proot bitpay-wordpress-test <./.github/workflows/acceptance/dump.sql && echo "Restored Database"
 
 
 
