@@ -1,4 +1,4 @@
-name: Build
+name: Tests
 
 on: [push, pull_request]
 
@@ -47,7 +47,8 @@ jobs:
           ./.github/workflows/acceptance/acceptance-tests.sh
 
       - name: Install Composer dependencies
-        run: composer install --dev --no-progress --prefer-dist --optimize-autoloader
+        run: |
+          composer install --dev --no-progress --prefer-dist --optimize-autoloader
 
       - name: Install WordPress with WooCommerce
         run: |
