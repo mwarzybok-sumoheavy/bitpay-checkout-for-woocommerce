@@ -41,6 +41,9 @@ jobs:
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql
           coverage: xdebug
 
+      - name: Change permissions for acceptance-tests.sh
+        run: chmod 755 .github/workflows/acceptance/acceptance-tests.sh
+
       - name: Prepare environment
         run: |
           ls -lha
