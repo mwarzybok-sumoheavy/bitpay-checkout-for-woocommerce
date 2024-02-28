@@ -37,7 +37,7 @@ define( 'WP_DEBUG', true );
  * DO NOT use a production database or one that is shared with something else.
  */
 
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'bitpay-wordpress-test' );
 define( 'DB_USER', 'root' );
 define( 'DB_PASSWORD', 'root' );
 define( 'DB_HOST', 'localhost' );

@@ -11,15 +11,23 @@ jobs:
         php-versions: [ 8.1, 8.2, 8.3 ]
 
     services:
+      apache:
+        image: webdevops/apache:ubuntu-18.04
+        ports:
+          - 80:80
       mysql:
         image: mysql:latest
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: false
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wordpress
+          MYSQL_DATABASE: bitpay-wordpress-test
         ports:
           - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      selenium:
+        image: selenium/standalone-chrome:3.141.5
+        ports:
+          - 4444:4444
 
     steps:
       - name: Checkout
@@ -33,6 +41,11 @@ jobs:
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql
           coverage: xdebug
 
+      - name: Prepare environment
+        run: |
+          ls -lha
+          ./.github/workflows/acceptance/acceptance-tests.sh
+
       - name: Install Composer dependencies
         run: composer install --dev --no-progress --prefer-dist --optimize-autoloader
 
@@ -44,7 +57,7 @@ jobs:
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
           php wp-cli.phar core download
           mv ./../bitpay-checkout-for-woocommerce/Unit/wp-config.githubworkflow.php wp-config.php
-          php wp-cli.phar wp core install --url=bitpay-wordpress.test --title=Example --admin_user=admin --admin_password=admin --admin_email=admin@example.com
+#          php wp-cli.phar wp core install --url=bitpay-wordpress.test --title=Example --admin_user=admin --admin_password=admin --admin_email=admin@example.com
           php wp-cli.phar wp plugin install --activate woocommerce
           mv ./../bitpay-checkout-for-woocommerce wp-content/plugins/bitpay-checkout-for-woocommerce
           php wp-cli.phar wp plugin install --activate bitpay-checkout-for-woocommerce
