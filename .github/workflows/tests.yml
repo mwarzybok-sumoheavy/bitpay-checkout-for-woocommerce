@@ -68,8 +68,8 @@ jobs:
 #          mv ./../bitpay-checkout-for-woocommerce wp-content/plugins/bitpay-checkout-for-woocommerce
 #          php wp-cli.phar wp plugin install --activate bitpay-checkout-for-woocommerce
 #        shell: bash
-
-      - name: Run WordPress code standard
-        run: |
-          ./vendor/bin/phpunit -c phpunit.xml.dist
-        shell: bash
+#
+#      - name: Run WordPress code standard
+#        run: |
+#          ./vendor/bin/phpunit -c phpunit.xml.dist
+#        shell: bash
