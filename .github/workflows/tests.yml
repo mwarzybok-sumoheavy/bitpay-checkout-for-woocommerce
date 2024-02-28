@@ -46,9 +46,9 @@ jobs:
 
       - name: Run Apache service
         run: |
-          a2enmod rewrite
-          sudo service apache2 start
+          sudo a2enmod rewrite
           sudo service apache2 status
+          sudo service apache2 start
 
       - name: Prepare environment
         run: |
