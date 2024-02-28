@@ -11,5 +11,5 @@ ls -lha /etc/
 mysql -h127.0.0.1 -uroot -proot bitpay-wordpress-test <./.github/workflows/acceptance/dump.sql && echo "Restored Database"
 
 sudo a2enmod rewrite
-sudo systemctl apache2 status
-sudo systemctl apache2 restart
+sudo systemctl apache status
+sudo systemctl apache restart
