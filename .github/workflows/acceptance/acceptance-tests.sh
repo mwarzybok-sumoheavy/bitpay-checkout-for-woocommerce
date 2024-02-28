@@ -10,6 +10,6 @@ ls -lha /etc/
 
 mysql -h127.0.0.1 -uroot -proot bitpay-wordpress-test <./.github/workflows/acceptance/dump.sql && echo "Restored Database"
 
-a2enmod rewrite
-systemctl apache2 status
-systemctl apache2 restart
+sudo a2enmod rewrite
+sudo systemctl apache2 status
+sudo systemctl apache2 restart
