@@ -10,11 +10,13 @@ jobs:
       matrix:
         php-versions: [ 8.1 ]
 
+    container: php:8.1-apache
+
     services:
-      apache:
-        image: webdevops/apache:ubuntu-18.04
-        ports:
-          - 80:80
+#      apache:
+#        image: webdevops/apache:ubuntu-18.04
+#        ports:
+#          - 80:80
       mysql:
         image: mysql:latest
         env:
