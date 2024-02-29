@@ -46,10 +46,16 @@ jobs:
       - name: Change permissions for acceptance-tests.sh
         run: chmod 755 .github/workflows/acceptance/acceptance-tests.sh
 
-      - name: Run Apache service
+      - name: Check Apache service
         run: |
           service apache2 status
+
+      - name: Enable Apache rewrite
+        run: |
           a2enmod rewrite
+
+      - name: Run Apache service
+        run: |
           service apache2 start
 
       - name: Prepare environment
