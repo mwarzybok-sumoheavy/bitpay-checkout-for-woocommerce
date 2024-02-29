@@ -35,13 +35,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
-          tools: phpunit-bridge
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql
-          coverage: xdebug
+#      - name: Setup PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: ${{ matrix.php-versions }}
+#          tools: phpunit-bridge
+#          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, mysql
+#          coverage: xdebug
 
       - name: Change permissions for acceptance-tests.sh
         run: chmod 755 .github/workflows/acceptance/acceptance-tests.sh
