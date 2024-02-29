@@ -46,6 +46,8 @@ jobs:
       - name: check php version
         run: php --version
 
+      - name: check apache version
+        run: service apache2status
 
       - name: Change permissions for acceptance-tests.sh
         run: chmod 755 .github/workflows/acceptance/acceptance-tests.sh
